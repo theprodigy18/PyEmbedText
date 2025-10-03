@@ -1,13 +1,14 @@
 from PIL import Image
 import numpy as np
+import evaluation as eval
 
 # -----------------------------
 # Util: text <-> bits
 # -----------------------------
-def text_to_bits(text):
+def text_to_bits(text: str) -> list:
     return [int(b) for c in text.encode("utf-8") for b in f"{c:08b}"]
 
-def bits_to_text(bits):
+def bits_to_text(bits: list) -> str:
     chars = []
     for b in range(0, len(bits), 8):
         byte = bits[b:b+8]
@@ -19,7 +20,7 @@ def bits_to_text(bits):
 # -----------------------------
 # Parity Coding: Embed
 # -----------------------------
-def embed_parity(img_array, secret_text, group_size=3):
+def embed_parity(img_array: np.ndarray, secret_text: str, group_size: int=3):
     secret_bits = text_to_bits(secret_text)
     flat = img_array.flatten()
     idx = 0
@@ -41,7 +42,7 @@ def embed_parity(img_array, secret_text, group_size=3):
 # -----------------------------
 # Parity Coding: Extract
 # -----------------------------
-def extract_parity(img_array, bit_length, group_size=3):
+def extract_parity(img_array: np.ndarray, bit_length: int, group_size: int=3):
     flat = img_array.flatten()
     bits = []
     idx = 0
@@ -77,3 +78,9 @@ if __name__ == "__main__":
 
     print("Original :", secret)
     print("Extracted:", extracted)
+    
+    # 5. Evaluation.
+    # Get the real bits and extracted bits.
+    original_bits = text_to_bits(secret)
+    extracted_bits = text_to_bits(extracted)
+    eval.evaluate_all(arr, stego_arr, original_bits, extracted_bits) # This will print the evaluation results.

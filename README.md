@@ -1,6 +1,6 @@
-# Image Steganography - Parity Coding
+# Image Watermarking - Parity Coding
 
-This repository implements steganography using the **Parity Coding** method to hide text within images.
+This repository implements watermarking using the **Parity Coding** method to hide text within images.
 
 ## Setup
 
@@ -47,6 +47,21 @@ This repository implements steganography using the **Parity Coding** method to h
 ## Requirements
 
 ```
-Pillow>=10.0.0
-numpy>=1.24.0
+imageio==2.37.0
+lazy_loader==0.4
+networkx==3.5
+numpy==2.3.3
+packaging==25.0imageio==2.37.0
+lazy_loader==0.4
+networkx==3.5
+numpy==2.3.3
+packaging==25.0
+pillow==11.3.0
+scikit-image==0.25.2
+scipy==1.16.2
+tifffile==2025.9.30
+pillow==11.3.0
+scikit-image==0.25.2
+scipy==1.16.2
+tifffile==2025.9.30
 ```
